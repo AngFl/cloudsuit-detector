@@ -45,7 +45,11 @@ class DatabaseDetector implements CloudSuitServiceDetector
             $pdo = new \PDO($this->databaseDsn, $this->username, $this->password);
         } catch (\PDOException $exception) {
             $detectResult->setCode(0);
-            $detectResult->setMessage($exception->getMessage());
+            $errorMessage = str_replace('No such file or directory',
+                "Connection refused for  ".  mb_substr($this->databaseDsn, 
+                    mb_strrpos($this->databaseDsn, 'mysql;') + 6, 
+                    mb_strlen($this->databaseDsn)), $exception->getMessage());
+            $detectResult->setMessage($errorMessage);
             return $detectResult;
         }
         $detectResult->setCode(1);

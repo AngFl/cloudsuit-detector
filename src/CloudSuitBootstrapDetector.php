@@ -310,7 +310,7 @@ class CloudSuitBootstrapDetector
             $detectState['csp-put-object'] = 'yes';
         }
 
-        if ($putObject === 0) {
+        if ($putObject->getCode() === 0) {
             $detectState['csp-put-object'] = 'no';
         }
 
@@ -336,7 +336,7 @@ class CloudSuitBootstrapDetector
             $detectState['csp-delete-bucket'] = 'yes';
         }
 
-        if ($deleteBucket === 0) {
+        if ($deleteBucket->getCode() === 0) {
             $detectState['csp-delete-bucket'] = 'no';
         }
         return $detectState;

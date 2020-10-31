@@ -46,5 +46,12 @@ return [
           'access-key' => 'K2RQMKKPDTF63H8CLTCZ',
           'secret-key' => 'DFvpIEoCWLEUF8GodM8knW1NnHbAzt5qrgQwv0PD',
           'endpoint'   =>  'http://111.231.211.119'
+      ],
+
+      'cam' => [
+          'secret-id'  => 'AKIDIqAE5i7C1cx4eDeuvhETfgjbOzNZXKuF',
+          'secret-key' => 'AFBzraIzb2JQS5VheLp32lFYigR1PZVD',
+          // 'endpoint'   => 'cam.api3.test1.tcb.fsphere.cn',
+          'endpoint'   => 'localhost:8012',
       ]
 ];
