@@ -30,10 +30,9 @@ $errorMiddleware = $serverApplication->addErrorMiddleware(true, true, true);
 $serverApplication->get('/suit', function (ServerRequestInterface $request, ResponseInterface $response, $args) use ($settings) {
     $cloudSuitBootstrapDetector = new CloudSuitBootstrapDetector();
     $tableLineData = $cloudSuitBootstrapDetector->boot(new ConnectionConfig($settings));
-    $response->withHeader('Content-Type', 'application/json')
-        ->getBody()
+    $response->getBody()
         ->write(json_encode($tableLineData));
-    return $response;
+    return $response->withHeader('Content-Type', 'application/json');
 });
 
 $serverApplication->get('/cam', function (ServerRequestInterface $request, ResponseInterface $response, $args) use ($settings) {
@@ -42,11 +41,10 @@ $serverApplication->get('/cam', function (ServerRequestInterface $request, Respo
     $responseContent = $tCenterCamDetectorService->detect('DescribeRoleList');
     $messageContent = $responseContent->getMessage();
     $camApiState = $responseContent->getCode() > 0 ? 'yes' : 'no';
-    $response->withHeader('Content-Type', 'application/json')
-        ->getBody()
+    $response->getBody()
         ->write(json_encode(['cam-api-state' => $camApiState,
             'message' => str_replace('HTTP/1.1 405 Not Allowed', '', $messageContent)]));
-    return $response;
+    return $response->withHeader('Content-Type', 'application/json');
 });
 
 // Run app
