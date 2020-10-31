@@ -32,7 +32,6 @@ class StorageDetector implements CloudSuitServiceDetector
     public function connectionReady(): DetectResult
     {
         $config = $this->connectionConfigProvider->provide();
-        // $credentials = new Credentials();
         $s3Client = new S3Client([
             'region'       => 'chengdu',
             'version'      => 'latest',
@@ -162,7 +161,6 @@ class StorageDetector implements CloudSuitServiceDetector
     public function putBucket(): DetectResult
     {
         $config = $this->connectionConfigProvider->provide();
-        // $credentials = new Credentials();
         $s3Client = new S3Client([
             'region'       => 'chengdu',
             'version'      => 'latest',
@@ -188,7 +186,6 @@ class StorageDetector implements CloudSuitServiceDetector
     public function putObject(): DetectResult
     {
         $config = $this->connectionConfigProvider->provide();
-        // $credentials = new Credentials();
         $s3Client = new S3Client([
             'region'       => 'chengdu',
             'version'      => 'latest',

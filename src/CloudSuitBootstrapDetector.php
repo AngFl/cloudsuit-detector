@@ -24,7 +24,7 @@ use App\Provider\KafkaConnectionConfigProvider;
 use App\Provider\MongoConnectionConfigProvider;
 use App\Provider\RedisConnectionConfigProvider;
 
-class BootstrapDetector
+class CloudSuitBootstrapDetector
 {
     private array $detectorClasses = [
         DatabaseDetector::class,
@@ -103,8 +103,7 @@ class BootstrapDetector
                 $kafkaState = $this->getKafkaState($detector);
                 $ETCDState = $this->getETCDState($detector);
                 $tableLineData[$detector->getSuitName()] =
-                    array_merge(
-                        ['connection-state' => $this->getConnectionState($detector)] ,
+                    array_merge(['connection-state' => $this->getConnectionState($detector)] ,
                         $databaseState, $elasticState, $mongoState, $cspState, $redisState, $kafkaState, $ETCDState);
             }
 

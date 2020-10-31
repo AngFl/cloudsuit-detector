@@ -9,7 +9,9 @@
         "mongodb/mongodb": "^1.7",
         "ext-mongodb": "*",
         "ext-json": "*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.2"
     },
     "autoload": {
         "psr-4" : {

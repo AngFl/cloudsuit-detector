@@ -203,10 +203,10 @@ class RedisDetector implements CloudSuitServiceDetector
             $detectResult->setMessage("ok");
             return $detectResult;
         } catch (ConnectionException $exception) {
-            $detectResult->setCode();
-            return 0;
+            $detectResult->setCode(0);
+            $detectResult->setMessage($exception->getMessage());
+            return $detectResult;
         }
-        return 1;
     }
 
     public function getValue():DetectResult
