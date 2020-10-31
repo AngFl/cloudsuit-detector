@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+$settings = require_once __DIR__ . '/../config/setting.php';
+
+use App\CloudSuitBootstrapDetector;
+use App\Config\ConnectionConfig;
+
+set_error_handler(function ($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+        // This error code is not included in error_reporting
+        return;
+    }
+    throw new RuntimeException($message);
+});
+
+$cloudSuitBootstrapDetector = new CloudSuitBootstrapDetector();
+$tableLineData = $cloudSuitBootstrapDetector->boot(new ConnectionConfig($settings));
+
+$climate = new \League\CLImate\CLImate();
+
+foreach ($tableLineData as $serviceInstance => $keyValue) {
+    $climate->out("service: $serviceInstance");
+    $tableLineItem = [];
+    foreach ($keyValue as $key => $value) {
+        if ($value !== 'not supported') {
+            $tableLineItem[$key] = mb_strlen($value) > 120
+                ? mb_substr($value, 0, 119) . "\n" . mb_substr($value, 119, mb_strlen($value) - 1) : $value ;
+        }
+    }
+    $climate->table([$tableLineItem]);
+}

@@ -93,9 +93,7 @@ class CloudSuitTCenterCamDetectorService
             $paramStr .= "{$key}={$val}&";
         }
 
-        $requestParam = mb_substr($paramStr, 0, mb_strlen($paramStr) - 1);
-
-        $sign = "POST" . $camEndpoint . "/?" . $requestParam;
+        $sign = "POST" . $camEndpoint . "/?" . mb_substr($paramStr, 0, mb_strlen($paramStr) - 1);
         $signature = hash_hmac("sha1", $sign, $secretKey, true);
 
         $requestParam = "";
