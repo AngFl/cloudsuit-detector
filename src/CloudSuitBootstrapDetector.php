@@ -448,15 +448,15 @@ class CloudSuitBootstrapDetector
 
         $getData = $detector->getData();
         if ($getData->getCode() < 0) {
-            $detectState['etcd-put-data'] = 'not supported';
+            $detectState['etcd-get-data'] = 'not supported';
         }
 
         if ($getData->getCode() > 0) {
-            $detectState['etcd-put-data'] = 'yes';
+            $detectState['etcd-get-data'] = 'yes';
         }
 
         if ($getData->getCode() === 0) {
-            $detectState['etcd-put-data'] = 'no';
+            $detectState['etcd-get-data'] = 'no';
         }
         return $detectState;
     }
