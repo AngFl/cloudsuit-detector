@@ -17,7 +17,7 @@ docker build -t example.mpaas/cloudsuit-detector:tag_name .
 服务部署
 
 ```
-kubectl apply -f cloudsuit-detectorl.yaml
+kubectl apply -f cloudsuit-detectorl.yaml -f cloudsuit-detector-app.yaml
 ```
 
 使用
