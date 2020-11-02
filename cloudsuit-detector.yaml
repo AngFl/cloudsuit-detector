@@ -1,0 +1,54 @@
+apiVersion: infra.tce.io/v1alpha1
+kind: Component
+metadata:
+  name: cloudsuit-detector
+  namespace: tcbnamespace
+spec:
+  config:
+    - name: cloudsuit-detector-config
+      path: /tce/conf/cm/local.json
+  containers:
+    - image: {{mpaas_image_registry}}/mpaas.mocks/cloudsuit-detector
+      name: cloudsuit-detector
+      ports:
+        - name: http
+          port: 7770
+  dependencies:
+    - dependencyName: tcbcsp
+      serviceID: mpaas-csp-component
+    - dependencyName: tcbes
+      serviceID: mpaas-es-component
+    - dependencyName: tcbdb
+      serviceID: mpaas-tdsql-component
+    - dependencyName: tcbkafka
+      serviceID: mpaas-kafka-component
+    - dependencyName: tcbredis
+      serviceID: mpaas-redis-component
+    - dependencyName: tcbmongo
+      serviceID: mpaas-mongo-component
+    - dependencyName: tcbetcd
+      serviceID: mpaas-etcd-component
+    - dependencyName: secret
+      serviceID: secret-console
+    - dependencyName: tcb_secret
+      serviceID: tcb-secret
+    - dependencyName: cloudapi2
+      scope: region
+      serviceID: tcloud-tcenter-yunapi2-api-server
+    - dependencyName: cloudapi3
+      scope: region
+      serviceID: tcloud-tcenter-yunapi3-access-server
+    - dependencyName: onlineapi3
+      serviceID: ocloud-tcenter-yunapi3-access-server
+  workloadType: infra.tce.io/v1alpha1/Deployment
+
+---
+apiVersion: infra.tce.io/v1alpha1
+kind: Config
+metadata:
+  name: cloudsuit-detector-config
+  namespace: tcbnamespace
+spec:
+  base: '{"test":"test"}'
+  private: '{"test":"test"}'
+  provide: '{"test":"test"}'

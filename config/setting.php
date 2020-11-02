@@ -6,52 +6,51 @@
 return [
      'database' => [
          'type'         => 'mysql',
-         'host'         => 'localhost',
-         'port'         =>  3306,
-         'username'     =>  'root',
-         'password'     =>  'qweqwe',
+         'host'         => '{{conf.service.tcbdb.host}}',
+         'port'         =>  {{conf.service.tcbdb.port}},
+         'username'     =>  '{{conf.service.tcbdb.user}}',
+         'password'     =>  '{{conf.service.tcbdb.pass}}',
      ],
 
      'redis'  =>  [
-         'host'         =>  '127.0.0.1',
-         'port'         =>   6382,
-         'auth'         =>  'password',
+         'host'         =>  '{{conf.service.tcbredis.host}}',
+         'port'         =>   {{conf.service.tcbredis.port}},
+         'auth'         =>  '{{conf.service.tcbredis.pass}}',
      ],
 
      'elastic' => [
-         'host'         => 'localhost',
-         'port'         =>  9200,
+         'host'         => '{{conf.service.tcbes.host}}',
+         'port'         =>  {{conf.service.tcbes.port}},
          'scheme'       => 'http',
-         'user'         => '',
-         'pass'         => ''
+         'user'         => '{{conf.service.tcbes.admin_user}}',
+         'pass'         => '{{conf.service.tcbes.admin_pass}}'
       ],
 
       'etcd'  => [
-          'endpoint'        => 'http://127.0.0.1:2379',
+          'endpoint'        => 'http://{{conf.service.tcbetcd.host}}:{{conf.service.tcbetcd.port}}',
       ],
 
       'kafka' => [
-          'host'       => 'localhost',
-          'port'       =>  9092
+          'host'       => '{{conf.service.tcbkafka.host}}',
+          'port'       =>  {{conf.service.tcbkafka.port}}
       ],
 
       'mongo' => [
-          'host'       =>  '127.0.0.1',
-          'port'       =>  27017,
-          'user'       =>  'cagliostro',
-          'pass'       =>  'password',
+          'host'       =>  '{{conf.service.tcbmongo.host}}',
+          'port'       =>  {{conf.service.tcbmongo.port}},
+          'user'       =>  '{{conf.service.tcbmongo.user}}',
+          'pass'       =>  '{{conf.service.tcbmongo.pass}}',
       ],
 
       's3'  =>  [
-          'access-key' => 'K2RQMKKPDTF63H8CLTCZ',
-          'secret-key' => 'DFvpIEoCWLEUF8GodM8knW1NnHbAzt5qrgQwv0PD',
-          'endpoint'   =>  'http://111.231.211.119'
+          'access-key' => '{{conf.service.tcbcsp.access_key}}',
+          'secret-key' => '{{conf.service.tcbcsp.secret_key}}',
+          'endpoint'   =>  'http://{{conf.service.tcbcsp.ipv4}}:{{conf.service.tcbcsp.port}}'
       ],
 
       'cam' => [
-          'secret-id'  => 'AKIDIqAE5i7C1cx4eDeuvhETfgjbOzNZXKuF',
-          'secret-key' => 'AFBzraIzb2JQS5VheLp32lFYigR1PZVD',
-          // 'endpoint'   => 'cam.api3.test1.tcb.fsphere.cn',
-          'endpoint'   => 'localhost:8012',
+          'secret-id'  => '{{conf.service.secret.secret_id}}',
+          'secret-key' => '{{conf.service.secret.secret_key}}',
+          'endpoint'   => 'http://cam.{{conf.service.cloudapi2.host}}',
       ]
 ];

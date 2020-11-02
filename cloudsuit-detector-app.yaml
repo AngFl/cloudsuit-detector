@@ -1,0 +1,31 @@
+apiVersion: infra.tce.io/v1alpha1
+kind: Configuration
+metadata:
+  name: cloud-access-auth
+  namespace: cloud-access
+spec:
+  components:
+    - componentName: mpaas-csp-component
+      instanceName: mpaas-csp-component
+    - componentName: mpaas-es-component
+      instanceName: mpaas-es-component
+    - componentName: mpaas-kafka-component
+      instanceName: mpaas-kafka-component
+    - componentName: mpaas-mongo-component
+      instanceName: mpaas-mongo-component
+    - componentName: mpaas-redis-component
+      instanceName: mpaas-redis-component
+    - componentName: mpaas-tdsql-component
+      instanceName: mpaas-tdsql-component
+    - componentName: mpaas-etcd-component
+      instanceName: mpaas-etcd-component
+    - componentName: cloudsuit-detector
+      instanceName: cloudsuit-detector
+      traits:
+        - traitType: infra.tce.io/v1alpha1/Network
+          network:
+            id: cloudsuit-detector
+            targetPort: 7770
+            host: cloudsuit.detector.tce.io
+            protocol: http
+            underlay: true

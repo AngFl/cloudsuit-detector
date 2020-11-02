@@ -9,11 +9,17 @@ COPY ./src      /app/src
 COPY ./config   /app/config
 COPY ./bin      /app/bin
 
-# COPY ./start.sh /app/start.sh
+
 COPY ./composer.json /app/composer.json
-COPY ./configuration_template.txt /app
+COPY configuration-template.txt /app
+
+COPY ./tcs-render/tcs-render /bin/tcs-render
+COPY ./tcs-render/tcs-render.sh /bin/tcs-render.sh
+# COPY ./start.sh /app/start.sh
 
 RUN php -v
+RUN /bin/tcs-render.sh -l /etc/configuration-template.txt -v /tce/conf/cm/local.json
 
-CMD ["php", "-S", "0.0.0.0:7770"]
+# CMD ["tcs-render.sh", "-l", "/etc/configuration-template.txt", "-v", "/tce/conf/cm/local.json"]
 # CMD ["./start.sh"]
+CMD [ "php", "-S", "0.0.0.0:7770" ]

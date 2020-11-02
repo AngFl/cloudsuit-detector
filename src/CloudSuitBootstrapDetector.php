@@ -271,7 +271,7 @@ class CloudSuitBootstrapDetector
             $detectState['mongo-query-document'] = 'no';
         }
 
-        $deleteDocument = $detector->deleteDocument();
+        $deleteDocument = $detector->deleteDocuments();
         if ($deleteDocument->getCode() < 0) {
             $detectState['mongo-delete-document'] = 'not supported';
         }

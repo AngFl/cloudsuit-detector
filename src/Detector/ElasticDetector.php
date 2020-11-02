@@ -145,16 +145,14 @@ class ElasticDetector implements CloudSuitServiceDetector
         $detectResult = new DetectResult();
         try {
             $result = $client->index($params);
-            dump($result);
+            $detectResult->setCode(1);
+            $detectResult->setMessage("ok");
+            return $detectResult;
         } catch (ElasticsearchException $exception) {
             $detectResult->setCode(0);
             $detectResult->setMessage($exception->getMessage());
             return $detectResult;
         }
-
-        $detectResult->setCode(1);
-        $detectResult->setMessage("ok");
-        return $detectResult;
     }
 
     public function deleteDocument(): DetectResult
